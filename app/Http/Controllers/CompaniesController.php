@@ -39,8 +39,9 @@ class CompaniesController extends Controller
             $name = date('m-d-Y_his');
 			$name = trim(preg_replace('/\s\s+/', ' ', str_replace("\n", " ", $name)));
             $logo_name = $name . '.' . $logo->getClientOriginalName();
-            $path = storage_path().'/app/public/logo';
-            $uplaod = $logo->move($path,$logo_name);
+            // $path = storage_path().'/app/public/logo';
+            // $uplaod = $logo->move($path,$logo_name);
+            $upload = $logo->storeAs('public/logo', $logo_name);
             $input['logo'] = $logo_name;
         }
         
@@ -91,6 +92,7 @@ class CompaniesController extends Controller
     
     public function destroy($id)
     {
+
 		$Companies = Companies::findOrFail($id);
         $Companies->delete();
 

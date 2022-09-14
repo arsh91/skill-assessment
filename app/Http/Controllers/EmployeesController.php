@@ -15,12 +15,12 @@ class EmployeesController extends Controller
     public function index()
     {
         $Employees = Employees::all();
-        return view('Employees.index', compact('Employees'));
+        return view('employees.index', compact('Employees'));
     }
 
     public function create()
     {
-        return view('Employees.create');
+        return view('employees.create');
     }
     
     public function store(Request $request)
@@ -31,59 +31,50 @@ class EmployeesController extends Controller
             'email' => 'required',
             'phone' => 'required'
         ]);
-        
+  
         $input = $request->all();
-        $Companies = Employees::create($input);
-        return redirect('/companies')->with('completed', 'Company has been saved!');
+        $Employees = Employees::create($input);
+        return redirect('/employees')->with('completed', 'Employee has been saved!');
     }
 
     public function show($id)
     {
-        $Companies = Companies::findOrFail($id);
-        return view('companies.show',compact('Companies'));
+        $Employees = Employees::findOrFail($id);
+        return view('employees.show',compact('Employees'));
     }
 
     public function edit($id)
     {
        
-        $Companies = Companies::findOrFail($id);
-        return view('companies.edit',compact('Companies'));
+        $Employees = Employees::findOrFail($id);
+        return view('employees.edit',compact('Employees'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required',
-            'website' => 'required',
+            'phone' => 'required'
         ]);
   
-        $Companies = Companies::findOrFail($id);
-		$Companies->name = $request->name;
-        $Companies->email = $request->email;
-        $Companies->website = $request->website;
+        $Employees = Employees::findOrFail($id);
+		$Employees->firstname = $request->firstname;
+        $Employees->lastname = $request->lastname;
+        $Employees->company = $request->company;
+        $Employees->email = $request->email;
+        $Employees->phone = $request->phone;
+        $Employees->save();
         
-        $logo_name="";
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-            $name = date('m-d-Y_his');
-			$name = trim(preg_replace('/\s\s+/', ' ', str_replace("\n", " ", $name)));
-            $logo_name = $name . '.' . $logo->getClientOriginalName();
-            $path = storage_path().'/app/public/logo';
-            $uplaod = $logo->move($path,$logo_name);
-            $Companies->logo = $logo_name;
-        }
-        $Companies->save();
-        
-        return redirect('/companies')->with('completed', 'Company has been updated');
+        return redirect('/employees')->with('completed', 'Employees has been updated');
     }
     
     public function destroy($id)
     {
-		$Companies = Companies::findOrFail($id);
-        $Companies->delete();
-
-        return redirect()->route('companies.index');
+		$Employees = Employees::findOrFail($id);
+        $Employees->delete();
+        return redirect()->route('employees.index');
     }
 
 }

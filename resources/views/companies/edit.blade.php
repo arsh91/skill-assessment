@@ -52,8 +52,10 @@
             <div class="form-group">
                 <label for="logo">website</label>
                 <input type="file" name="logo" class="form-control" placeholder="logo">
+                <img src="{{ asset('storage/logo/'.$Companies->logo)}}" style="margin-top: 10px;" width="100px"
+                    height="100px" />
             </div>
-            <button type="submit" class="btn btn-block btncolor">Create User</button>
+            <button type="submit" class="btn btn-block btncolor">Update Company</button>
         </form>
     </div>
 </div>

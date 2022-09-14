@@ -1,12 +1,12 @@
 @extends('index')
-@section('title', 'Agency Document')
-@section('subtitle', 'Agency Document')
+@section('title', 'Employees Log')
+@section('subtitle', 'Employees Log')
 @section('content')
 <center>
-    <h2><b>Companies Log</b></h2>
+    <h2><b>Employees Log</b></h2>
 </center>
 
-<a href="{{ url('/companies/create') }}" class="btn addBTn">Add new Company</a>
+<a href="{{ url('/employees/create') }}" class="btn addBTn">Add new Employee</a>
 <br>
 <hr>
 
@@ -26,10 +26,11 @@
         <table class="table table-hover" id="agencydocument_table">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Company</th>
                     <th>Email</th>
-                    <th>Website</th>
-                    <th>Logo</th>
+                    <th>Phone</th>
                     <th>Action</th>
 
                 </tr>
@@ -37,20 +38,23 @@
 
             <tbody>
 
-                @forelse($Companies as $company)
+                @forelse($Employees as $employee)
                 <tr>
-                    <td>{{ $company->name }}</td>
-                    <td>{{ $company->email }}</td>
-                    <td>{{ $company->website}}</td>
-                    <td><img src="{{ asset('storage/logo/'.$company->logo)}}" width="100px" height="100px" /></td>
-                    <td>
-                        <a href="{{url('/companies/show/'.$company->id)}}"><i class="fa fa-eye fa-fw iconColor"></i></a>
+                    <td>{{ $employee->firstname }}</td>
+                    <td>{{ $employee->lastname }}</td>
+                    <td>{{ $employee->company}}</td>
+                    <td>{{ $employee->email}}</td>
+                    <td>{{ $employee->phone}}</td>
 
-                        <a href="{{url('/companies/edit/'.$company->id)}}"><i
+                    <td>
+                        <a href="{{url('/employees/show/'.$employee->id)}}"><i
+                                class="fa fa-eye fa-fw iconColor"></i></a>
+
+                        <a href="{{url('/employees/edit/'.$employee->id)}}"><i
                                 class="fa fa-edit fa-fw iconColor"></i></a>
 
                         @include('includes.delete',array( 'url' =>
-                        url('/companies/destroy/'.$company->id), 'text' => '<i class="fa fa-delete fa-fw"></i>',
+                        url('/employees/destroy/'.$employee->id), 'text' => '',
                         'class'=>''))
 
                     </td>

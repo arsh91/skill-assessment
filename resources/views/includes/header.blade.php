@@ -66,7 +66,7 @@ a.anchor {
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Current User </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">logout</a>
+                        <a class="dropdown-item" href="/logout">logout</a>
                     </div>
                 </li>
             </ul>
@@ -75,7 +75,7 @@ a.anchor {
 
     </nav>
     <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse" style="padding-bottom: 300%;padding-top: 12px;">
+        <div class="sidebar-nav navbar-collapse" style="padding-bottom: 550%;padding-top: 12px;">
             <ul class="nav in" id="side-menu">
                 <li>
                     <div class="icondiv">
@@ -83,10 +83,13 @@ a.anchor {
                     </div>
                 </li>
                 <li class="log">
-                    <a class="anchor" href="http://127.0.0.1:8082/companies">Companies Log</a>
+                    <a class="anchor" href="/dashboard">Dashboard</a>
                 </li>
                 <li class="log">
-                    <a class="anchor" href="">Employees Log</a>
+                    <a class="anchor" href="/companies">Companies Log</a>
+                </li>
+                <li class="log">
+                    <a class="anchor" href="/employees">Employees Log</a>
                 </li>
 
             </ul>

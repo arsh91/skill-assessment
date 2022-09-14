@@ -58,14 +58,10 @@ class UsersAuthController extends Controller
             'password' => 'required',
         ]);
         
-
-        // $credential=['email' => $request->input('email'), 'password' => $request->input('password')];
         $credential=$request->only('email', 'password');
-        // dd(Auth::attempt($credential));
         if (Auth::attempt($credential))
         {
             $user = Auth::user();
-            
             \Session::put('success','You are Login successfully!!');
             return redirect()->route('dashboard');
             
@@ -83,8 +79,7 @@ class UsersAuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        \Session::flush();
-        \Sessioin::put('success','You are logout successfully');        
+        \Session::flush();      
         return redirect(route('usersLogin'));
     }
 }

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -13,7 +14,11 @@ class UsersController extends Controller
      */
     public function dashboard()
     {
-        return view('users.dashboard');
+        if(Auth::check()){
+            return view('users.dashboard');
+        }else{
+            return redirect(route('usersLogin'));
+        }
     }
 }
 ?>

@@ -17,11 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');  
-            $table->unsignedBigInteger('company');
-            $table->foreign('company')->references('id')->on('companies');
+            $table->string('company');  
             $table->string('email')->unique();  
             $table->string('phone');
- 
             $table->timestamps();
         });
     }
